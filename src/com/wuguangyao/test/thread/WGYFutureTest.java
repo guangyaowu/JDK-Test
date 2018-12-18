@@ -37,6 +37,15 @@ public class WGYFutureTest {
         Future<Integer> integerFuture = executor.submit(new CallableTask());
         Integer integer = integerFuture.get();
         System.out.println(integer);
+        System.exit(0);
+    }
+
+
+
+    class SynchronizedClass{
+        private int value;
+        public synchronized int get(){return value;}
+        public synchronized void set(int value){this.value=value;}
     }
 
 }
