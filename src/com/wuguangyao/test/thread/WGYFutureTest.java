@@ -18,7 +18,7 @@ public class WGYFutureTest {
 
         @Override
         public Integer call() throws Exception {
-            return Integer.MIN_VALUE;
+            return Integer.MAX_VALUE;
         }
     }
 
