@@ -76,7 +76,7 @@ public class ClientSocket {
 
                     int length = socketChannel.read(buffer);
 
-                    System.out.println("client read: " + socketChannel + new String(buffer.array(), 0, length));
+                    System.out.println("client read: 【" + new String(buffer.array(), 0, length) + "】 from " + socketChannel);
 
                     socketChannel.write(ByteBuffer.wrap(("client " + System.currentTimeMillis()).getBytes()));
 

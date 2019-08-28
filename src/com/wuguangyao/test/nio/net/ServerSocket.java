@@ -100,7 +100,7 @@ public class ServerSocket {
 
                     String string = new String(buffer.array(), 0 , length);
 
-                    System.out.println("read:" + socketChannel + string);
+                    System.out.println("server read:【" + string + "】 from " + socketChannel);
 
                     //写消息
                     socketChannel.write(ByteBuffer.wrap(("server " + System.currentTimeMillis()).getBytes()));
