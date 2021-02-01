@@ -36,8 +36,8 @@ public class ClientMsgHandler extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        Channel channel = ctx.channel();
-        channel.writeAndFlush("我已经收到了你发来的消息!");
+//        Channel channel = ctx.channel();
+//        channel.writeAndFlush("我已经收到了你发来的消息!");
         ctx.fireChannelReadComplete();
     }
 

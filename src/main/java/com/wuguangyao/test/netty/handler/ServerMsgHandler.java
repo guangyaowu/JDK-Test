@@ -2,10 +2,16 @@ package com.wuguangyao.test.netty.handler;
 
 import io.netty.channel.Channel;
 import io.netty.channel.ChannelHandlerContext;
+import io.netty.channel.ChannelId;
 import io.netty.channel.ChannelInboundHandlerAdapter;
+import io.netty.channel.group.ChannelGroup;
+import io.netty.channel.group.DefaultChannelGroup;
+import io.netty.util.concurrent.GlobalEventExecutor;
 
 public class ServerMsgHandler  extends ChannelInboundHandlerAdapter {
 
+    // 用于记录和管理所有客户端的channel
+    public static ChannelGroup clients = new DefaultChannelGroup(GlobalEventExecutor.INSTANCE);
 
     @Override
     public void channelRegistered(ChannelHandlerContext ctx) throws Exception {
@@ -36,8 +42,8 @@ public class ServerMsgHandler  extends ChannelInboundHandlerAdapter {
 
     @Override
     public void channelReadComplete(ChannelHandlerContext ctx) throws Exception {
-        Channel channel = ctx.channel();
-        channel.writeAndFlush("我已经收到了你发来的消息!");
+//        Channel channel = ctx.channel();
+//        channel.writeAndFlush("我已经收到了你发来的消息!");
         ctx.fireChannelReadComplete();
     }
 
@@ -58,6 +64,26 @@ public class ServerMsgHandler  extends ChannelInboundHandlerAdapter {
             throws Exception {
         ctx.fireExceptionCaught(cause);
     }
+    /**
+     * Do nothing by default, sub-classes may override this method.
+     */
+    @Override
+    public void handlerAdded(ChannelHandlerContext ctx) throws Exception {
+        Channel channel = ctx.channel();
+        ChannelId channelId = channel.id();
+        if(clients.find(channelId) == null){
+            clients.add(channel);
+            channel.writeAndFlush("谢谢连接");
+        }
+    }
 
+    /**
+     * Do nothing by default, sub-classes may override this method.
+     */
+    @Override
+    public void handlerRemoved(ChannelHandlerContext ctx) throws Exception {
+        Channel channel = ctx.channel();
+        clients.remove(channel);
+    }
 
 }

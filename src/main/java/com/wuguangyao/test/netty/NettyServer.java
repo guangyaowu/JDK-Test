@@ -1,5 +1,6 @@
 package com.wuguangyao.test.netty;
 
+import com.wuguangyao.test.netty.handler.ClientMsgHandler;
 import com.wuguangyao.test.netty.handler.WGYServerChannelInitializer;
 import io.netty.bootstrap.ServerBootstrap;
 import io.netty.channel.*;
