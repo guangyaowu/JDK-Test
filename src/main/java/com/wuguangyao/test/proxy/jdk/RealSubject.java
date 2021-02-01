@@ -7,12 +7,10 @@ package com.wuguangyao.test.proxy.jdk;
  **/
 public class RealSubject implements Subject {
 
-    @Override
     public void methodA() {
         System.out.println("RealSubject.methodA()");
     }
 
-    @Override
     public void methodB() {
         System.out.println("Begin RealSubject.methodB");
         this.methodA();

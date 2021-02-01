@@ -19,7 +19,6 @@ public class JDKDynamicProxy implements InvocationHandler {
     public <T> T getProxy() {
         return (T) Proxy.newProxyInstance(target.getClass().getClassLoader(), target.getClass().getInterfaces(), this);
     }
-
     @Override
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         Object object = method.invoke(target,args);
