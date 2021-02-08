@@ -2,6 +2,7 @@ package com.wuguangyao.test;
 
 import com.wuguangyao.test.demo.PO;
 import com.wuguangyao.test.demo.TestAnnotation;
+import com.wuguangyao.test.util.QRCodeUtil;
 
 /**
  * <p>TODO</p>
@@ -23,7 +24,8 @@ public class Main {
             po.setCode(po.getCode() + annotation.value());
         }
         System.out.println(po);
-
+        String qrCode = QRCodeUtil.createQRCode("https://blog.csdn.net/xx_luoli/article/details/103911067",600,600);
+        System.out.println(qrCode);
     }
 
 }
